@@ -1,4 +1,4 @@
-package com.abdullahessa.sixtdemo.ui.screen.home
+package com.abdullahessa.sixtdemo.ui.screen.home.model
 
 import android.annotation.SuppressLint
 import android.content.Context

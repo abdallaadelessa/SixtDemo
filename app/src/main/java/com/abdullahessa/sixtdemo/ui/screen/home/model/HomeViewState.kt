@@ -1,4 +1,4 @@
-package com.abdullahessa.sixtdemo.ui.screen.home
+package com.abdullahessa.sixtdemo.ui.screen.home.model
 
 import android.os.Parcelable
 import androidx.annotation.DrawableRes

@@ -12,7 +12,7 @@ import androidx.navigation.compose.composable
 import com.abdullahessa.sixtdemo.R
 import com.abdullahessa.sixtdemo.ui.component.AppRouter.AppRoute
 import com.abdullahessa.sixtdemo.ui.screen.home.HomeScreen
-import com.abdullahessa.sixtdemo.ui.screen.home.HomeViewModel
+import com.abdullahessa.sixtdemo.ui.screen.home.model.HomeViewModel
 import com.abdullahessa.sixtdemo.ui.screen.splash.SplashScreen
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
