@@ -3,11 +3,45 @@ package com.abdullahessa.sixtdemo.ui.screen.common
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 /**
  * @author Created by Abdullah Essa on 09.10.21.
  */
-abstract class BaseViewModel(private val appContext: Context) : ViewModel() {
+abstract class BaseViewModel<T : BaseState>(private val appContext: Context) : ViewModel() {
+
+    //region Base state
+
+    /**
+     *
+     */
+    abstract val initialState: T
+
+    private val mutableStateFlow: MutableStateFlow<T> by lazy { MutableStateFlow(initialState) }
+
+    private val state: T
+        get() = mutableStateFlow.value
+
+    /**
+     *
+     */
+    val stateFlow: Flow<T>
+        get() = mutableStateFlow
+
+
+    protected fun publishState(updateStateBlock: (T) -> T = { it }): T {
+        val oldState = state
+        val newState = updateStateBlock(oldState)
+        // skip if the state is the same
+        if (oldState == newState) return newState
+        mutableStateFlow.tryEmit(newState)
+        return newState
+    }
+
+    //endregion
+
+    //region String Resources
 
     /**
      * Returns a localized string from the application's package's
@@ -47,4 +81,12 @@ abstract class BaseViewModel(private val appContext: Context) : ViewModel() {
         vararg formatArgs: String
     ): String = appContext.getString(this, *formatArgs)
 
+    //endregion
+
 }
+
+
+/**
+ * @author Created by Abdullah Essa on 09.10.21.
+ */
+interface BaseState

@@ -80,15 +80,16 @@ dependencies {
     implementation("com.google.accompanist:accompanist-insets:0.14.0")
     implementation("com.google.accompanist:accompanist-insets-ui:0.14.0")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.14.0")
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
 
     //====================> Retrofit
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
-    //====================> Timber
+    //====================> Coil
 
-    implementation 'com.jakewharton.timber:timber:5.0.1'
+    implementation("io.coil-kt:coil-compose:1.4.0")
 
     //====================> Kotlin Serialization
 

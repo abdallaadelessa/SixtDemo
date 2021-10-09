@@ -15,8 +15,6 @@ import com.abdullahessa.sixtdemo.ui.screen.common.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,17 +30,12 @@ class HomeViewModel @Inject constructor(
     private val appContext: Context,
     @MainDispatcher
     private val mainDispatcher: CoroutineDispatcher,
-) : BaseViewModel(appContext) {
+) : BaseViewModel<HomeViewState>(appContext) {
 
     //region Properties
 
-    private val mutableStateFlow: MutableStateFlow<HomeViewState> = MutableStateFlow(
-        HomeViewState.Success(isRefreshing = true)
-    )
-
-    private val state: HomeViewState get() = mutableStateFlow.value
-
-    val stateFlow: Flow<HomeViewState> get() = mutableStateFlow
+    override val initialState: HomeViewState
+        get() = HomeViewState.Success(isRefreshing = true)
 
     //endregion
 
@@ -55,15 +48,18 @@ class HomeViewModel @Inject constructor(
     fun reload() {
         viewModelScope.launch(mainDispatcher) {
             // Update the old state
-            computeAndUpdateState {
+            publishState {
                 when (it) {
                     is HomeViewState.Success -> it.copy(isRefreshing = true)
                     is HomeViewState.Error -> it.copy(isRefreshing = true)
                 }
             }
 
-            // Load Data and create the new state
-            when (val result = carsService.getCarList()) {
+            // Load Data
+            val result: AppResult<List<CarModel>> = carsService.getCarList()
+
+            // Create the new state
+            val newState: HomeViewState = when (result) {
                 is AppResult.Success -> {
                     handleAppResultSuccess(result)
                 }
@@ -71,6 +67,9 @@ class HomeViewModel @Inject constructor(
                     handleAppResultError(result)
                 }
             }
+
+            // Publish
+            publishState { newState }
         }
     }
 
@@ -78,46 +77,35 @@ class HomeViewModel @Inject constructor(
 
     //region Helpers
 
-    private fun handleAppResultSuccess(result: AppResult.Success<List<CarModel>>) {
+    private fun handleAppResultSuccess(result: AppResult.Success<List<CarModel>>): HomeViewState =
         if (result.data.isEmpty()) {
             HomeViewState.Error(
-                drawableResId = R.drawable.ic_splash_icon,
+                drawableResId = R.drawable.ic_no_data,
                 message = R.string.error_no_content.get()
             )
         } else {
             HomeViewState.Success(cars = result.data)
         }
-    }
 
-    private fun handleAppResultError(result: AppResult.Error) {
-        when (result.throwable) {
-            is AppConnectionError -> {
-                HomeViewState.Error(
-                    drawableResId = R.drawable.ic_splash_icon,
-                    message = R.string.error_no_connection.get()
-                )
-            }
-            is AppHttpError -> {
-                HomeViewState.Error(
-                    drawableResId = R.drawable.ic_splash_icon,
-                    message = R.string.error_server_error.get()
-                )
-            }
-            else -> {
-                HomeViewState.Error(
-                    drawableResId = R.drawable.ic_splash_icon,
-                    message = R.string.error_unknown_error.get()
-                )
-            }
+    private fun handleAppResultError(result: AppResult.Error): HomeViewState = when (result.throwable) {
+        is AppConnectionError -> {
+            HomeViewState.Error(
+                drawableResId = R.drawable.ic_no_connection,
+                message = R.string.error_no_connection.get()
+            )
         }
-    }
-
-    private fun computeAndUpdateState(updateStateBlock: (HomeViewState) -> HomeViewState = { it }) {
-        val oldState = state
-        val newState = updateStateBlock(oldState)
-        // skip if the state is the same
-        if (oldState == newState) return
-        mutableStateFlow.tryEmit(newState)
+        is AppHttpError -> {
+            HomeViewState.Error(
+                drawableResId = R.drawable.ic_server_error,
+                message = R.string.error_server_error.get()
+            )
+        }
+        else -> {
+            HomeViewState.Error(
+                drawableResId = R.drawable.ic_unknown_error,
+                message = R.string.error_unknown_error.get()
+            )
+        }
     }
 
     //endregion

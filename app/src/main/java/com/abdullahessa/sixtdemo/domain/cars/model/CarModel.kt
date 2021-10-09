@@ -16,12 +16,18 @@ data class CarModel(
 ) : Parcelable {
     @Parcelize
     data class CarInfo(
-        val group: String?,
+        val name: String?,
         val licensePlate: String?,
-        val colorInHex: String?,
-        val innerCleanliness: String?,
+        val color: String?,
         val imageUrl: String?,
-    ) : Parcelable
+        val cleanliness: Cleanliness?,
+    ) : Parcelable {
+        enum class Cleanliness {
+            REGULAR,
+            CLEAN,
+            VERY_CLEAN,
+        }
+    }
 
     @Parcelize
     data class LocationInfo(
@@ -31,7 +37,7 @@ data class CarModel(
 
     @Parcelize
     data class FuelInfo(
-        val fuelLevel: Double?,
+        val fuelLevel: Int?,
         val fuelType: String?,
     ) : Parcelable
 }

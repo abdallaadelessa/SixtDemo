@@ -25,7 +25,7 @@ interface AppColors {
 
 private object AppLightColors : AppColors {
     override val background = Color(0xffc5f5ed)
-    override val surface = Color.Transparent
+    override val surface = Color(0xFFe3f2fd)
     override val error: Color = Color(0xFFB00020)
     override val surfaceBorder = Color.Black
     override val primaryVariant = Color(0xff27ceaf)
