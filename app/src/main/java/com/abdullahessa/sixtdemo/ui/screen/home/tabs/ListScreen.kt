@@ -56,14 +56,14 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 @Composable
 fun ListScreen(viewModel: HomeViewModel) {
     val state: HomeViewState by viewModel.stateFlow.collectAsState(viewModel.initialState)
-    ListContent(
+    ListScreenContent(
         state = state,
         reload = viewModel::reload
     )
 }
 
 @Composable
-fun ListContent(
+fun ListScreenContent(
     state: HomeViewState,
     reload: () -> Unit = {}
 ) {
@@ -231,7 +231,7 @@ private fun ErrorItem(state: HomeViewState.Error) {
     ) {
         Image(
             painter = painterResource(state.drawableResId),
-            contentDescription = null,
+            contentDescription = "Error Drawable",
             modifier = Modifier
                 .size(120.dp)
                 .padding(end = 16.dp)

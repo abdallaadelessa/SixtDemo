@@ -44,14 +44,14 @@ import kotlinx.coroutines.launch
 @Composable
 fun MapScreen(viewModel: HomeViewModel) {
     val state: HomeViewState by viewModel.stateFlow.collectAsState(viewModel.initialState)
-    MapContent(
+    MapScreenContent(
         state = state,
         reload = viewModel::reload,
     )
 }
 
 @Composable
-fun MapContent(
+fun MapScreenContent(
     state: HomeViewState,
     reload: () -> Unit = {}
 ) {
@@ -122,7 +122,7 @@ private fun ErrorItem(state: HomeViewState.Error) {
     ) {
         Image(
             painter = painterResource(state.drawableResId),
-            contentDescription = null,
+            contentDescription = "Error Drawable",
             modifier = Modifier
                 .size(120.dp)
                 .padding(end = 16.dp)
