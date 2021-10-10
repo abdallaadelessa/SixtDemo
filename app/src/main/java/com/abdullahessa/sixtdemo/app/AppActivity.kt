@@ -7,9 +7,8 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.abdullahessa.sixtdemo.ui.component.AppRouter
-import com.abdullahessa.sixtdemo.ui.component.AppRouter.AppRoute
 import com.abdullahessa.sixtdemo.ui.component.AppNavigationGraph
+import com.abdullahessa.sixtdemo.ui.component.AppRouter
 import com.alifwyaa.azanmunich.android.ui.theme.AppTheme
 import com.google.accompanist.insets.ProvideWindowInsets
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +21,7 @@ class AppActivity : ComponentActivity() {
             val navController: NavHostController = rememberNavController()
 
             val appRouter: AppRouter =
-                remember(navController) { AppRouter(startRoute = AppRoute.SPLASH, navController = navController) }
+                remember(navController) { AppRouter(navController = navController) }
 
             AppTheme(isDarkTheme = isSystemInDarkTheme()) {
                 ProvideWindowInsets {

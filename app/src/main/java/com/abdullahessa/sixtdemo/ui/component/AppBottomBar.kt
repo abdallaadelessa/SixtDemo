@@ -16,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.abdullahessa.sixtdemo.R
+import com.abdullahessa.sixtdemo.app.extensions.toEnumOrNull
 import com.abdullahessa.sixtdemo.ui.component.AppRouter
 
 /**
@@ -25,6 +26,9 @@ import com.abdullahessa.sixtdemo.ui.component.AppRouter
 fun AppBottomNavigation(router: AppRouter) {
     val navBackStackEntry: NavBackStackEntry? by router.navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val appRoute = currentRoute?.toEnumOrNull<AppRouter.AppRoute>()
+
+    if (appRoute !in listOf(AppRouter.AppRoute.LIST, AppRouter.AppRoute.MAP)) return
 
     BottomNavigation {
         AppBottomNavigationItem(
@@ -54,6 +58,8 @@ private fun RowScope.AppBottomNavigationItem(
     @StringRes stringResId: Int,
     action: () -> Unit
 ) {
+    val isSelected: Boolean = screenRoute == currentRoute
+
     BottomNavigationItem(
         icon = {
             Icon(
@@ -62,7 +68,10 @@ private fun RowScope.AppBottomNavigationItem(
             )
         },
         label = { Text(stringResource(id = stringResId)) },
-        selected = screenRoute == currentRoute,
-        onClick = { action() }
+        selected = isSelected,
+        onClick = {
+            if (isSelected) return@BottomNavigationItem
+            action()
+        }
     )
 }

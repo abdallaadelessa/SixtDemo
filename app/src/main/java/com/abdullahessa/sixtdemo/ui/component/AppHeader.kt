@@ -9,10 +9,16 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.abdullahessa.sixtdemo.R
+import com.abdullahessa.sixtdemo.app.extensions.toEnumOrNull
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 /**
@@ -20,12 +26,20 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
  */
 @Composable
 fun AppHeader(
+    appRouter: AppRouter,
     modifier: Modifier = Modifier,
-    title: String,
     statusBarColor: Color = MaterialTheme.colors.primary,
     backgroundColor: Color = MaterialTheme.colors.primary,
     contentColor: Color = MaterialTheme.colors.onPrimary,
 ) {
+
+    val navBackStackEntry: NavBackStackEntry? by appRouter.navController.currentBackStackEntryAsState()
+
+    val title = when (navBackStackEntry?.destination?.route?.toEnumOrNull<AppRouter.AppRoute>()) {
+        AppRouter.AppRoute.MAP -> stringResource(id = R.string.home_Map)
+        AppRouter.AppRoute.LIST -> stringResource(id = R.string.home_list)
+        else -> return
+    }
 
     val systemUiController = rememberSystemUiController()
 

@@ -5,13 +5,13 @@ import androidx.navigation.NavHostController
 /**
  * Models the navigation actions in the app.
  */
-class AppRouter(
-    val startRoute: AppRoute,
-    val navController: NavHostController
-) {
-    fun navigateToHome() {
+class AppRouter(val navController: NavHostController) {
+
+    private val startRoute: AppRoute = AppRoute.LIST
+
+    fun navigateToStartRoute() {
         navController.popBackStack()
-        navigateToTab(AppRoute.LIST.route)
+        navigateToTab(startRoute.route)
     }
 
     fun navigateToHomeList() {
@@ -27,11 +27,7 @@ class AppRouter(
             // Pop up to the start destination of the graph to
             // avoid building up a large stack of destinations
             // on the back stack as users select items
-            navController.graph.startDestinationRoute?.let { route ->
-                popUpTo(route) {
-                    saveState = true
-                }
-            }
+            popUpTo(startRoute.route) { saveState = true }
             // Avoid multiple copies of the same destination when
             // reselecting the same item
             launchSingleTop = true
