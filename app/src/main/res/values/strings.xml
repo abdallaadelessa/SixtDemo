@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">SixtDemo</string>
+    <string name="home_list">Home List</string>
+    <string name="home_Map">Home Map</string>
     <string name="tab_list">List</string>
     <string name="tab_map">Map</string>
-    <string name="error_no_content">No Content</string>
-    <string name="error_no_connection">No Connection, Pull to try again</string>
-    <string name="error_server_error">Server is down, Pull to try again</string>
-    <string name="error_unknown_error">Something went wrong!, Pull to try again</string>
+    <string name="error_no_content">No Content, Refresh to try again</string>
+    <string name="error_no_connection">No Connection, Refresh to try again</string>
+    <string name="error_server_error">Server is down, Refresh to try again</string>
+    <string name="error_unknown_error">Something went wrong!, Refresh to try again</string>
     <string name="regular">Regular</string>
     <string name="clean">Clean</string>
     <string name="very_clean">Very Clean</string>

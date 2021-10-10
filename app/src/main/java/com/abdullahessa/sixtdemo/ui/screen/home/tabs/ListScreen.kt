@@ -119,12 +119,11 @@ private fun CarItem(carModel: CarModel) {
                     data = carModel.car?.imageUrl,
                     builder = {
                         crossfade(true)
-                        val drawable: Drawable? = getFallbackDrawable()
-                        placeholder(drawable)
-                        error(drawable)
-                        fallback(drawable)
-
-
+                        getFallbackDrawable()?.also { fallback ->
+                            placeholder(fallback)
+                            error(fallback)
+                            fallback(fallback)
+                        }
                     }
                 ),
                 contentScale = ContentScale.Fit,

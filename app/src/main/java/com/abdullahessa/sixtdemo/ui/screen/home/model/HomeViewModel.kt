@@ -18,24 +18,28 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 /**
  * @author Created by Abdullah Essa on 08.10.21.
  */
 @HiltViewModel
 @SuppressLint("StaticFieldLeak")
 class HomeViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle,
     private val carsService: CarsService,
     @ApplicationContext
     private val appContext: Context,
     @MainDispatcher
     private val mainDispatcher: CoroutineDispatcher,
-) : BaseViewModel<HomeViewState>(appContext) {
+) : BaseViewModel<HomeViewState>(savedStateHandle, appContext) {
 
     //region Properties
 
     override val initialState: HomeViewState
-        get() = HomeViewState.Success(isRefreshing = true)
+        get() = HomeViewState.Error(
+            drawableResId = R.drawable.ic_no_data,
+            message = R.string.error_no_content.get()
+        )
 
     //endregion
 

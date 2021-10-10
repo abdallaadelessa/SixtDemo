@@ -1,6 +1,5 @@
 package com.abdullahessa.sixtdemo.ui.component
 
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 
 /**
@@ -45,8 +44,8 @@ class AppRouter(
      * Destinations used in the ([MainActivityContent]).
      */
     enum class AppRoute(val route: String) {
-        SPLASH("/splash"),
-        MAP("/map"),
-        LIST("/list"),
+        SPLASH("splash"),
+        MAP("map"),
+        LIST("list"),
     }
 }

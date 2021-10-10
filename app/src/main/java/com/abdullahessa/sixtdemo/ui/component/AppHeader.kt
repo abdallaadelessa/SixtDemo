@@ -19,7 +19,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
  * @author Created by Abdullah Essa on 08.10.21.
  */
 @Composable
-fun HomeAppHeader(
+fun AppHeader(
     modifier: Modifier = Modifier,
     title: String,
     statusBarColor: Color = MaterialTheme.colors.primary,

@@ -5,15 +5,16 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.abdullahessa.sixtdemo.R
+import com.abdullahessa.sixtdemo.app.extensions.toEnumOrNull
 import com.abdullahessa.sixtdemo.ui.component.AppRouter.AppRoute
 import com.abdullahessa.sixtdemo.ui.screen.home.AppBottomNavigation
 import com.abdullahessa.sixtdemo.ui.screen.home.ListScreen
@@ -28,18 +29,24 @@ import com.google.accompanist.insets.systemBarsPadding
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun AppNavigationGraph(appRouter: AppRouter) {
+    // Use the same instance for both tabs
     val homeViewModel = hiltViewModel<HomeViewModel>()
-
-    val isFullScreen: MutableState<Boolean> = remember { mutableStateOf(true) }
 
     Scaffold(
         topBar = {
-            if (isFullScreen.value) return@Scaffold
-            HomeAppHeader(title = stringResource(id = R.string.app_name))
+            val navBackStackEntry: NavBackStackEntry? by appRouter.navController.currentBackStackEntryAsState()
+            when (navBackStackEntry?.destination?.route?.toEnumOrNull<AppRoute>()) {
+                AppRoute.MAP -> AppHeader(title = stringResource(id = R.string.home_Map))
+                AppRoute.LIST -> AppHeader(title = stringResource(id = R.string.home_list))
+                else -> return@Scaffold
+            }
         },
         bottomBar = {
-            if (isFullScreen.value) return@Scaffold
-            AppBottomNavigation(appRouter)
+            val navBackStackEntry: NavBackStackEntry? by appRouter.navController.currentBackStackEntryAsState()
+            when (navBackStackEntry?.destination?.route?.toEnumOrNull<AppRoute>()) {
+                AppRoute.MAP, AppRoute.LIST -> AppBottomNavigation(appRouter)
+                else -> return@Scaffold
+            }
         }
     ) { innerPadding ->
         NavHost(
@@ -50,16 +57,13 @@ fun AppNavigationGraph(appRouter: AppRouter) {
                 .padding(innerPadding)
         ) {
             composable(route = AppRoute.SPLASH.route) {
-                isFullScreen.value = true
                 CreateSplashScreen(appRouter::navigateToHome)
             }
             composable(route = AppRoute.LIST.route) {
-                isFullScreen.value = false
-                CreateListScreen(appRouter, homeViewModel)
+                CreateListScreen(homeViewModel)
             }
             composable(route = AppRoute.MAP.route) {
-                isFullScreen.value = false
-                CreateMapScreen(appRouter, homeViewModel)
+                CreateMapScreen(homeViewModel)
             }
         }
     }
@@ -71,11 +75,11 @@ private fun CreateSplashScreen(navigateToHome: () -> Unit) {
 }
 
 @Composable
-private fun CreateListScreen(appRouter: AppRouter, homeViewModel: HomeViewModel) {
+private fun CreateListScreen(homeViewModel: HomeViewModel) {
     ListScreen(viewModel = homeViewModel)
 }
 
 @Composable
-private fun CreateMapScreen(appRouter: AppRouter, homeViewModel: HomeViewModel) {
+private fun CreateMapScreen(homeViewModel: HomeViewModel) {
     MapScreen(viewModel = homeViewModel)
 }

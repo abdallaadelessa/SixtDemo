@@ -10,12 +10,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SixtDemo">
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAohcQ29MznCM5wRI0r3FCMo5FHYdS_Moo" />
+
         <activity
             android:name=".app.AppActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.SixtDemo.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
