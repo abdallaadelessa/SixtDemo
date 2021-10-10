@@ -33,7 +33,7 @@ The app is divided into 3 packages
 
 ### Dependency Injection
 
-- Hilt (much much easier than easier then uing android dagger 2)
+- Hilt (much much easier than uing android dagger 2)
 
 ### Json Parsing
 
@@ -41,7 +41,7 @@ The app is divided into 3 packages
 
 ### UI
 
-- Jetpack Compose (the quickest wasy to build ui no more recycler views and stupid adapters :))
+- Jetpack Compose (the quickest wasy to build ui no more recycler views, stupid adapters and delegates :O)
 
 # Unit Tests
 - Using dependency injection helps to separate the units to be tested from it's dependencies<br>
@@ -51,7 +51,7 @@ The app is divided into 3 packages
 [HomeViewModelTest](app/src/test/java/com/abdullahessa/sixtdemo/ui/screen/home/model/HomeViewModelTest.kt)
 
 # UI Tests
-Fake a view state and assert that the ui elements is displayed based on this fake state
+Fake a view state and then assert that the ui elements are displayed based on this fake state
 - [ListScreenTest](app/src/androidTest/java/com/abdullahessa/sixtdemo/ui/screen/home/tabs/ListScreenTest.kt)
 - [MapScreenTest](app/src/androidTest/java/com/abdullahessa/sixtdemo/ui/screen/home/tabs/MapScreenTest.kt)
 
