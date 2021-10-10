@@ -11,16 +11,14 @@ The app is divided into 3 packages
 # Screenshots
 
 ## Dark Theme
-
-![alt tag](/screenshots/dark/1.png?raw=true)
-![alt tag](/screenshots/dark/2.png?raw=true)
-![alt tag](/screenshots/dark/3.png?raw=true)
+<img src="/screenshots/dark/1.png" width="400">
+<img src="/screenshots/dark/2.png" width="400">
+<img src="/screenshots/dark/3.png" width="400">
 
 ## Light Theme
-
-![alt tag](/screenshots/light/1.png?raw=true)
-![alt tag](/screenshots/light/2.png?raw=true)
-![alt tag](/screenshots/light/3.png?raw=true)
+<img src="/screenshots/light/1.png" width="400">
+<img src="/screenshots/light/2.png" width="400">
+<img src="/screenshots/light/3.png" width="400">
 
 # Libraries
 
@@ -50,18 +48,15 @@ The app is divided into 3 packages
 - Jetpack Compose
 
 # Unit Tests
-
-Using a dependency injection helps to separate the units to be tested from it's dependencies
-
+- Using dependency injection helps to separate the units to be tested from it's dependencies<br>
 [CarsServiceImplTest](app/src/test/java/com/abdullahessa/sixtdemo/domain/cars/service/CarsServiceImplTest.kt)
 
-Using a view model helps to test the UI logic with just local unit tests
+- Using a view model helps to test the UI logic with in local unit tests<br>
 [HomeViewModelTest](app/src/test/java/com/abdullahessa/sixtdemo/ui/screen/home/model/HomeViewModelTest.kt)
 
 # UI Tests
-
-[ListScreenTest](app/src/androidTest/java/com/abdullahessa/sixtdemo/ui/screen/home/tabs/ListScreenTest.kt)
-[MapScreenTest](app/src/androidTest/java/com/abdullahessa/sixtdemo/ui/screen/home/tabs/MapScreenTest.kt)
+- [ListScreenTest](app/src/androidTest/java/com/abdullahessa/sixtdemo/ui/screen/home/tabs/ListScreenTest.kt)
+- [MapScreenTest](app/src/androidTest/java/com/abdullahessa/sixtdemo/ui/screen/home/tabs/MapScreenTest.kt)
 
 # Apk
-[SixtDemo.apk](apk/sixtDemo.apk)
+- [SixtDemo.apk](apk/sixtDemo.apk)
