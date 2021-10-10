@@ -4,7 +4,7 @@ Demo app for illustrating how to write testable and high quality code using the 
 
 The app is divided into 3 packages
 
-- Data -> Data Layer (get the data from data source)
+- Data -> Data Layer (retrieve the data from the data source)
 - Domain -> Business layer (do some processing on the data)
 - UI -> Presentation layer (present the data)
 
@@ -20,20 +20,20 @@ The app is divided into 3 packages
 
 ### Multithreading
 
-- Kotlin Coroutines
+- Kotlin Coroutines 
 
 ### Network
 
 - OkHttp
-- Retrofit
+- Retrofit 
 
 ### Image Loader
 
-- Coil
+- Coil (i used to use glide but with jetpack compose coil is much easier)
 
 ### Dependency Injection
 
-- Hilt
+- Hilt (much much easier than easier then uing android dagger 2)
 
 ### Json Parsing
 
@@ -41,7 +41,7 @@ The app is divided into 3 packages
 
 ### UI
 
-- Jetpack Compose
+- Jetpack Compose (the quickest wasy to build ui no more recycler views and stupid adapters :))
 
 # Unit Tests
 - Using dependency injection helps to separate the units to be tested from it's dependencies<br>
@@ -51,6 +51,7 @@ The app is divided into 3 packages
 [HomeViewModelTest](app/src/test/java/com/abdullahessa/sixtdemo/ui/screen/home/model/HomeViewModelTest.kt)
 
 # UI Tests
+Fake a view state and assert that the ui elements is displayed based on this fake state
 - [ListScreenTest](app/src/androidTest/java/com/abdullahessa/sixtdemo/ui/screen/home/tabs/ListScreenTest.kt)
 - [MapScreenTest](app/src/androidTest/java/com/abdullahessa/sixtdemo/ui/screen/home/tabs/MapScreenTest.kt)
 
