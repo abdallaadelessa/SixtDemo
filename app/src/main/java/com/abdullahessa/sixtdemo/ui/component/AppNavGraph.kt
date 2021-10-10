@@ -5,6 +5,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
@@ -25,6 +26,10 @@ import com.google.accompanist.insets.systemBarsPadding
 fun AppNavigationGraph(appRouter: AppRouter) {
     // Use the same instance for both tabs
     val homeViewModel = hiltViewModel<HomeViewModel>()
+
+    LaunchedEffect(Unit) {
+        homeViewModel.reload()
+    }
 
     Scaffold(
         topBar = { AppHeader(appRouter) },

@@ -3,6 +3,7 @@ package com.abdullahessa.sixtdemo.ui.screen.common
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.annotation.StringRes
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -47,14 +48,18 @@ abstract class BaseViewModel<T : BaseState>(
     val stateFlow: Flow<T>
         get() = mutableStateFlow
 
-
     protected fun publishState(updateStateBlock: (T) -> T = { it }): T {
         val oldState = state
         val newState = updateStateBlock(oldState)
         // skip if the state is the same
         if (oldState == newState) return newState
-        mutableStateFlow.tryEmit(newState)
+        emitState(newState)
         return newState
+    }
+
+    @VisibleForTesting
+    internal fun emitState(newState: T) {
+        mutableStateFlow.tryEmit(newState)
     }
 
     private fun <T> SavedStateHandle.getStateFlow(

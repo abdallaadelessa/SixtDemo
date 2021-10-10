@@ -43,10 +43,6 @@ class HomeViewModel @Inject constructor(
 
     //endregion
 
-    init {
-        reload()
-    }
-
     //region Public Methods
 
     fun reload() {
