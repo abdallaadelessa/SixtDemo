@@ -11,39 +11,35 @@ The app is divided into 3 packages
 # Screenshots
 
 ## Dark Theme
-<img src="/screenshots/dark/1.png" width="400">
-<img src="/screenshots/dark/2.png" width="400">
-<img src="/screenshots/dark/3.png" width="400">
+<img src="/screenshots/dark/1.png" width="300"> <img src="/screenshots/dark/2.png" width="300"> <img src="/screenshots/dark/3.png" width="300">
 
 ## Light Theme
-<img src="/screenshots/light/1.png" width="400">
-<img src="/screenshots/light/2.png" width="400">
-<img src="/screenshots/light/3.png" width="400">
+<img src="/screenshots/light/1.png" width="300"> <img src="/screenshots/light/2.png" width="300"> <img src="/screenshots/light/3.png" width="300">
 
 # Libraries
 
-## Multithreading
+### Multithreading
 
 - Kotlin Coroutines
 
-## Network
+### Network
 
 - OkHttp
 - Retrofit
 
-## Image Loader
+### Image Loader
 
 - Coil
 
-## Dependency Injection
+### Dependency Injection
 
 - Hilt
 
-## Json Parsing
+### Json Parsing
 
 - Kotlin Serialization
 
-## UI
+### UI
 
 - Jetpack Compose
 
@@ -51,7 +47,7 @@ The app is divided into 3 packages
 - Using dependency injection helps to separate the units to be tested from it's dependencies<br>
 [CarsServiceImplTest](app/src/test/java/com/abdullahessa/sixtdemo/domain/cars/service/CarsServiceImplTest.kt)
 
-- Using a view model helps to test the UI logic with in local unit tests<br>
+- Using a view model helps to test the UI logic in local unit tests<br>
 [HomeViewModelTest](app/src/test/java/com/abdullahessa/sixtdemo/ui/screen/home/model/HomeViewModelTest.kt)
 
 # UI Tests
