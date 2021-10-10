@@ -1,6 +1,6 @@
 # Sixt Demo
 
-Demo app for illustrating how to write testable code using the MVVM architecture and the Jetpack libraries
+Demo app for illustrating how to write testable and high quality code using the MVVM architecture and the Jetpack libraries
 
 The app is divided into 3 packages
 
