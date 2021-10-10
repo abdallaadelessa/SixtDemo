@@ -11,10 +11,10 @@ The app is divided into 3 packages
 # Screenshots
 
 ## Dark Theme
-<img src="/screenshots/dark/1.png" width="300"> <img src="/screenshots/dark/2.png" width="300"> <img src="/screenshots/dark/3.png" width="300">
+<img src="/screenshots/dark/1.png" width="200"> <img src="/screenshots/dark/2.png" width="200"> <img src="/screenshots/dark/3.png" width="200">
 
 ## Light Theme
-<img src="/screenshots/light/1.png" width="300"> <img src="/screenshots/light/2.png" width="300"> <img src="/screenshots/light/3.png" width="300">
+<img src="/screenshots/light/1.png" width="200"> <img src="/screenshots/light/2.png" width="200"> <img src="/screenshots/light/3.png" width="200">
 
 # Libraries
 
