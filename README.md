@@ -6,7 +6,7 @@ The app is divided into 3 packages
 
 - Data -> Data Layer (retrieve the data from the data source)
 - Domain -> Business layer (do some processing on the data)
-- UI -> Presentation layer (present the data)
+- UI -> Presentation layer (display the data)
 
 # Screenshots
 
