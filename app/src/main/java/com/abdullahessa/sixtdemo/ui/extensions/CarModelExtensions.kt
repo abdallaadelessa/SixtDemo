@@ -1,6 +1,8 @@
 package com.abdullahessa.sixtdemo.ui.extensions
 
+import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
+import com.abdullahessa.sixtdemo.R
 import com.abdullahessa.sixtdemo.domain.cars.model.CarModel.CarInfo
 import com.abdullahessa.sixtdemo.domain.cars.model.CarModel.FuelInfo
 
@@ -13,6 +15,14 @@ fun CarInfo.Cleanliness?.toColor(): Color =
         CarInfo.Cleanliness.CLEAN -> Color(0xFF558b2f)
         CarInfo.Cleanliness.VERY_CLEAN -> Color(0xFF388e3c)
         null -> Color.Red
+    }
+
+@StringRes
+fun CarInfo.Cleanliness?.toStringResId(): Int =
+    when (this) {
+        CarInfo.Cleanliness.CLEAN -> R.string.clean
+        CarInfo.Cleanliness.VERY_CLEAN -> R.string.very_clean
+        else -> R.string.regular
     }
 
 
